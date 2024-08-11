@@ -1,0 +1,507 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: url('background.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+/* 自定义复选框样式 */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 30px; /* 缩小复选框的宽度 */
+  height: 20px; /* 缩小复选框的高度 */
+  margin-right: 5px; /* 减少开关与文字之间的间距 */
+}
+
+/* 复选框轨道样式 */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* 自定义复选框滑块样式 */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #d8a8f1; /* 紫色 */
+  -webkit-transition: .4s;
+  transition: .4s;
+  border-radius: 10px; /* 缩小滑块的圆角 */
+}
+
+/* 自定义按钮样式 */
+.button {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #8136b9; /* 按钮背景色 */
+  color: #fff; /* 按钮文字颜色 */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease; /* 添加过渡效果 */
+}
+
+/* 按钮悬停状态样式 */
+.button:hover {
+  background-color: #6a1d99; /* 悬停时的背景色 */
+}
+
+/* 按钮点击后的样式 */
+.button:active {
+  transform: scale(0.9); /* 点击时缩小按钮 */
+}
+
+/* 点击按钮后的文字放大缩小效果 */
+@keyframes textScale {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+#switchStatus {
+  display: inline-block;
+  animation: textScale 0.5s ease-in-out; /* 设置动画效果 */
+}
+
+/* 用于打开状态的复选框样式 */
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 16px; /* 缩小标记的大小 */
+  width: 16px; /* 缩小标记的大小 */
+  left: 2px; /* 调整标记的位置 */
+  bottom: 2px; /* 调整标记的位置 */
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+  border-radius: 50%;
+}
+
+
+
+
+
+/* 复选框激活时的滑块样式 */
+input:checked + .slider {
+  background-color: #8136b9; /* 深紫色 */
+}
+
+/* 复选框激活时的滑块内部样式 */
+input:checked + .slider:before {
+  -webkit-transform: translateX(14px); /* 调整标记的位置 */
+  -ms-transform: translateX(14px); /* 调整标记的位置 */
+  transform: translateX(14px); /* 调整标记的位置 */
+}
+
+/* 调整开关状态文字样式 */
+#switchStatus {
+  font-size: 14px; /* 字体大小 */
+  color: #333; /* 文字颜色 */
+}
+
+.container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    background-color: rgba(255, 255, 255, 0.8); /* 背景透明度 */
+}
+
+.fileListContainer {
+    max-height: 70vh; /* 设置文件列表容器的最大高度为视口高度的70% */
+    overflow-y: auto; /* 允许垂直滚动 */
+    padding: 10px;
+    
+}
+
+
+
+.file-list-title {
+    color: purple; /* 初始颜色为紫色 */
+    transition: color 0.3s ease; /* 添加颜色渐变过渡效果 */
+}
+
+.file-list-title {
+    background: linear-gradient(45deg, purple, hotpink); /* 鼠标悬停时背景渐变色 */
+    -webkit-background-clip: text; /* Webkit浏览器下支持渐变色 */
+    background-clip: text;
+    -webkit-text-fill-color: transparent; /* 隐藏文字填充色 */
+}
+
+
+
+h1 {
+    text-align: center;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    padding: 10px 0;
+    border-bottom: 1px solid #ccc;
+    transition: background-color 0.3s ease; /* 添加过渡效果 */
+}
+
+
+/* 鼠标悬停时改变背景颜色 */
+li:hover {
+    background-color: #e6d5ea; /* 淡紫色背景，稍微暗一些 */
+}
+
+a {
+    color: #333;
+    text-decoration: none;
+}
+
+/* 悬停文件夹时的颜色变化 */
+li.folder:hover a {
+    color: #69328e; /* 深紫色 */
+}
+
+/* 悬停文件时的颜色变化 */
+li.file:hover a {
+    color: #007bff; /* 蓝色 */
+}
+
+
+/* 对于文件夹，鼠标悬停时改变字体颜色 */
+li:hover a:last-child {
+    color: #ff8c00; /* 橙色字体 */
+}
+
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* 鼠标悬停时改变字体颜色 */
+li:hover a {
+    color: #333; /* 黑色字体 */
+}
+
+
+
+/* css样式 。 */
+li:hover a {
+    color: #ff0000; /* 字体颜色 */
+    position: relative; /* 使得伪元素相对于链接定位 */
+}
+
+/* 当鼠标悬停时显示漂浮文字 */
+li:hover a::after{
+    visibility: visible; /* 显示 */
+    opacity: 1; /* 不透明 */
+}
+
+/* 悬浮文字样式 */
+li a::after{
+    content: "未命名标签"; /* 设置漂浮文字内容 */
+    position: absolute; /* 绝对定位 */
+    top: -35px; /* 位于链接上方 40px 处 */
+    left: 150px; /* 居中对齐 */
+    color: #ffffff; /* 白色文字 */
+    padding: 5px 25px 5px 5px; /* 内边距，25px 为图标的宽度 */
+    visibility: hidden; /* 默认隐藏 */
+    transition: opacity 0.5s; /* 添加淡入淡出过渡效果 */
+    background-image: url('icon/nil.png'); /* 添加图标 */
+    background-size: 20px; /* 图标大小 */
+    background-repeat: no-repeat; /* 不重复 */
+    background-position: 5px center; /* 位置调整，水平居中 */
+    background-color: rgba(105,50,142, 0.8); /* 红色半透明背景 */
+    transform: -50%; /* 水平居中 */
+    padding: 5px 25px 5px 30px; /* 调整内边距，使文字向右移动 */
+    border-radius: 5px; /* 圆角 */
+    font-size: 12px; /* 字体大小 */
+    white-space: nowrap; /* 不换行 */
+    z-index: 1; /* 确保漂浮文字在文件名之上 */
+    opacity: 0; /* 默认透明 */
+}
+
+
+
+/*li a[href$=""]::after,*/
+/*li a[href$="#返回上一级文件夹"]::after{*/
+/*    content: ""; /* 设置漂浮文字内容 */
+/*    background-image: url(''); /* 添加图标 */
+/*    top:10000%;*/
+/*}*/
+
+
+li a[href$="#文件夹"]::after{
+    content: "文件夹"; /* 设置漂浮文字内容 */
+    background-image: url('icon/Folders.png'); /* 添加图标 */
+    color: #FFD932
+}
+
+
+li a[href$="#返回上一级文件夹"]::after{
+    content: "返回到上一级目录"; /* 设置漂浮文字内容 */
+    background-image: url('icon/back.png'); /* 添加图标 */
+    color: #FFD932
+}
+
+li:hover a[href$=".exe"]:last-child,
+li:hover a[href$=".com"]:last-child{
+    color: #4169E1; /* 字体颜色 */
+}
+
+li a[href$=".com"]::after{
+    content: "MSDOS可执行程序"; /* 设置漂浮文字内容 */
+    background-image: url('icon/com.png'); /* 添加图标 */
+}
+
+li a[href$=".exe"]::after{
+    content: "windows可执行程序"; /* 设置漂浮文字内容 */
+    background-image: url('icon/exe.png'); /* 添加图标 */
+}
+
+
+li:hover a[href$=".doc"]:last-child,
+li:hover a[href$=".docx"]:last-child{
+    color: #00FFFF; /* 字体颜色 */
+}
+
+li a[href$=".doc"]::after{
+    content: "Word文档"; /* 设置漂浮文字内容 */
+    background-image: url('icon/doc.png'); /* 添加图标 */
+}
+
+li a[href$=".docx"]::after{
+    content: "Word文档"; /* 设置漂浮文字内容 */
+    background-image: url('icon/docx.png'); /* 添加图标 */
+}
+
+
+li:hover a[href$=".ppt"]:last-child,
+li:hover a[href$=".pptx"]:last-child{
+    color: #D2691E; /* 字体颜色 */
+}
+
+li a[href$=".ppt"]::after{
+    content: "PPT演示文稿"; /* 设置漂浮文字内容 */
+    background-image: url('icon/exel.png'); /* 添加图标 */
+}
+
+li a[href$=".pptx"]::after{
+    content: "PPT演示文稿"; /* 设置漂浮文字内容 */
+    background-image: url('icon/exel.png'); /* 添加图标 */
+}
+
+
+li:hover a[href$=".exel"]:last-child{
+    color: #32CD32; /* 字体颜色 */
+}
+
+li a[href$=".exel"]::after{
+    content: "Excel表格"; /* 设置漂浮文字内容 */
+    background-image: url('icon/exel.png'); /* 添加图标 */
+}
+
+li:hover a[href$=".apk"]:last-child{
+    color: #7B68EE; /* 字体颜色 */
+}
+
+li a[href$=".apk"]::after{
+    content: "安卓程序安装包"; /* 设置漂浮文字内容 */
+    background-image: url('icon/apk.png'); /* 添加图标 */
+}
+
+li:hover a[href$=".avi"]:last-child,
+li:hover a[href$=".mov"]:last-child,
+li:hover a[href$=".movie"]:last-child,
+li:hover a[href$=".mp4"]:last-child,
+li:hover a[href$=".gif"]:last-child,
+li:hover a[href$=".mp3"]:last-child,
+li:hover a[href$=".wav"]:last-child,
+li:hover a[href$=".jpg"]:last-child,
+li:hover a[href$=".png"]:last-child,
+li:hover a[href$=".tiff"]:last-child,
+li:hover a[href$=".raw"]:last-child{
+    color: #5fda26; /* 字体颜色 */
+}
+
+li a[href$=".avi"]::after{
+    content: "视频格式"; /* 设置漂浮文字内容 */
+    background-image: url('icon/avi.png'); /* 添加图标 */
+}
+
+li a[href$=".mov"]::after{
+    content: "视频格式"; /* 设置漂浮文字内容 */
+    background-image: url('icon/mov.png'); /* 添加图标 */
+}
+
+li a[href$=".movie"]::after{
+    content: "视频格式"; /* 设置漂浮文字内容 */
+    background-image: url('icon/movie.png'); /* 添加图标 */
+}
+
+li a[href$=".mp4"]::after{
+    content: "视频格式"; /* 设置漂浮文字内容 */
+    background-image: url('icon/mp4.png'); /* 添加图标 */
+}
+
+li a[href$=".gif"]::after{
+    content: "动态图片"; /* 设置漂浮文字内容 */
+    background-image: url('icon/gif.png'); /* 添加图标 */
+}
+
+li a[href$=".mp3"]::after{
+    content: "音频格式"; /* 设置漂浮文字内容 */
+    background-image: url('icon/mp3.png'); /* 添加图标 */
+}
+
+li a[href$=".wav"]::after{
+    content: "音频格式"; /* 设置漂浮文字内容 */
+    background-image: url('icon/wav.png'); /* 添加图标 */
+}
+
+li a[href$=".jpg"]::after{
+    content: "图片格式"; /* 设置漂浮文字内容 */
+    background-image: url('icon/jpg.png'); /* 添加图标 */
+}
+
+li a[href$=".png"]::after{
+    content: "图片格式"; /* 设置漂浮文字内容 */
+    background-image: url('icon/png.png'); /* 添加图标 */
+}
+
+li a[href$=".tiff"]::after{
+    content: "图片格式"; /* 设置漂浮文字内容 */
+    background-image: url('icon/TIFF.png'); /* 添加图标 */
+}
+
+li a[href$=".raw"]::after{
+    content: "图片格式"; /* 设置漂浮文字内容 */
+    background-image: url('icon/raw.png'); /* 添加图标 */
+}
+
+
+li:hover a[href$=".rar"]:last-child,
+li:hover a[href$=".7z"]:last-child,
+li:hover a[href$=".zip"]:last-child,
+li:hover a[href$=".tar"]:last-child{
+    color: #FE95F0; /* 字体颜色 */
+}
+
+li a[href$=".tar"]::after{
+    content: "压缩包"; /* 设置漂浮文字内容 */
+    background-image: url('icon/tar.png'); /* 添加图标 */
+}
+
+li a[href$=".zip"]::after{
+    content: "压缩包"; /* 设置漂浮文字内容 */
+    background-image: url('icon/zip.png'); /* 添加图标 */
+}
+
+li a[href$=".7z"]::after{
+    content: "压缩包"; /* 设置漂浮文字内容 */
+    background-image: url('icon/7z.png'); /* 添加图标 */
+}
+
+li a[href$=".rar"]::after{
+    content: "压缩包"; /* 设置漂浮文字内容 */
+    background-image: url('icon/rar.png'); /* 添加图标 */
+}
+
+li:hover a[href$=".txt"]:last-child,
+li:hover a[href$=".cmd"]:last-child,
+li:hover a[href$=".dll"]:last-child,
+li:hover a[href$=".ini"]:last-child{
+    color: #fc7215; /* 字体颜色 */
+}
+li a[href$=".txt"]::after{
+    content: "文本"; /* 设置漂浮文字内容 */
+    background-image: url('icon/txt.png'); /* 添加图标 */
+}
+
+li a[href$=".cmd"]::after{
+    content: "Windows命令提提示符"; /* 设置漂浮文字内容 */
+    background-image: url('icon/cmd.png'); /* 添加图标 */
+}
+
+li a[href$=".dll"]::after{
+    content: "DLL链接库"; /* 设置漂浮文字内容 */
+    background-image: url('icon/DLL.png'); /* 添加图标 */
+}
+
+li a[href$=".ini"]::after{
+    content: "配置项文件"; /* 设置漂浮文字内容 */
+    background-image: url('icon/ini.png'); /* 添加图标 */
+}
+
+
+li:hover a[href$=".html"]:last-child,
+li:hover a[href$=".php"]:last-child,
+li:hover a[href$=".js"]:last-child,
+li:hover a[href$=".json"]:last-child{
+    color: #c42eff; /* 字体颜色 */
+}
+
+li a[href$=".html"]::after{
+    content: "Hyper Text Markup Language web前端工程文件"; /* 设置漂浮文字内容 */
+    background-image: url('icon/html.png'); /* 添加图标 */
+}
+
+li a[href$=".php"]::after{
+    content: " Hypertext Preprocessor web前端工程文件"; /* 设置漂浮文字内容 */
+    background-image: url('icon/php.png'); /* 添加图标 */
+}
+
+li a[href$=".js"]::after{
+    content: "JavaScript web前端工程文件"; /* 设置漂浮文字内容 */
+    background-image: url('icon/js.png'); /* 添加图标 */
+}
+
+li a[href$=".json"]::after{
+    content: "json数据文件"; /* 设置漂浮文字内容 */
+    background-image: url('icon/json.png'); /* 添加图标 */
+}
+
+/* 在 styles.css 中 */
+.folder {
+    color: #F4A460;
+    /* 其他样式，如需要 */
+}
+
+
+
+#video-background {
+  display: flex;
+  justify-content: center; /* 在水平方向上居中 */
+  align-items: center; /* 在垂直方向上居中 */
+  height: 100vh; /* 设置容器的高度为视窗高度 */
+}
+
+.background {
+  max-width: 100%; /* 设置视频的最大宽度为100% */
+  max-height: 100%; /* 设置视频的最大高度为100% */
+  width: auto; /* 根据容器的宽度自动调整视频的宽度 */
+  height: auto; /* 根据容器的高度自动调整视频的高度 */
+}
+
+
+
+
+
+
+
+

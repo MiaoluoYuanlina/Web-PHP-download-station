@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>苗萝缘莉雫の文件资源库</title>
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="animation.css">
+
+<style>
+    body, html {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+    }
+    #video-background {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        overflow: hidden;
+    }
+    #video-background video {
+        min-width: 100%;
+        min-height: 100%;
+        width: auto;
+        height: auto;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    
+
+    
+</style>
+
+<body>
+
+
+<div id="video-background">
+    <video autoplay muted loop>
+        <source src="video.mp4" type="video/mp4" class="background width=device-width, initial-scale=1" >
+        您的浏览器不支持视频标签.
+    </video>
+</div>
+<div class="container">
+    
+    <h1><span class="file-list-title">文件列表</span></h1>
+
+    <label class="switch">
+        <input type="checkbox" id="downloadSwitch">
+        <span class="slider round"></span>
+    </label>
+    
+    <span id="switchStatus">传输节点</span> <!-- 用于显示开关状态 -->
+    <h5>如果提示404或者无法打开网址就点击上面切换节点尝试</h5>
+    
+    <div class="fileListContainer">
+        <ul id="fileList"></ul>
+    </div>
+</div>
+
+    
+
+<script>
+</script>
+
+<body>
+    
+<script src="script.js"></script>
+<script src="animation.js"></script>
+
+<script>
+
+// 检测用户使用的浏览器
+var userAgentData = window.navigator.userAgentData;
+var browserName;
+if (userAgentData && userAgentData.brands) {
+    var brands = userAgentData.brands;
+    for (var i = 0; i < brands.length; i++) {
+        var brand = brands[i];
+        if (brand.brand === "Microsoft Edge") {
+            browserName = "Edge浏览器";
+            break;
+        } else if (brand.brand === "Google Chrome") {
+            browserName = "Chrome浏览器";
+            break;
+        } else if (brand.brand === "BIDUBrowser") {
+            browserName = "百度浏览器";
+            break;
+        } else if (brand.brand === "Opera") {
+            browserName = "Opera浏览器";
+            break;
+        } else if (brand.brand === "Safari") {
+            browserName = "Safari浏览器";
+            break;
+        } else if (brand.brand === "Firefox") {
+            browserName = "Firefox浏览器";
+            break;
+        }
+    }
+} else {
+    // 检查是否为移动浏览器
+    if (/Mobile|Android|iPhone|iPad|iPod|Windows Phone/i.test(navigator.userAgent)) {
+        // 检查是否为手机百度浏览器
+        if (/baiduboxapp|BIDUBrowser/i.test(navigator.userAgent)) {
+            //百度浏览器显示source时会出现错误，百度对source进行了修改，所以遇到使用百度浏览器的要隐藏source，不然会出现问题。
+            browserName = "百度浏览器";
+            alert("CN:你使用的可能是百度浏览器，百度浏览器早显示本站内容时会出现显示错误，建议换成其他浏览器！\nUS:You may be using the Baidu browser, Baidu browser early to display the content of this site will appear to display errors, it is recommended to change to other browsers!\nJP:あなたはBaiduのブラウザを使用している可能性があり、Baiduのブラウザは、早期にこのサイトの内容を表示するために表示されるエラーを表示するには、他のブラウザに変更することをお勧めします！");
+            document.getElementById("video-background").style.display = "none";
+        } else if (/UCBrowser/i.test(navigator.userAgent)) {
+            browserName = "UC浏览器";
+        } else if (/QQBrowser/i.test(navigator.userAgent)) {
+            browserName = "QQ浏览器";
+        } else if (/MicroMessenger/i.test(navigator.userAgent)) {
+            browserName = "微信浏览器";
+            alert("CN:微信浏览器无法下载文件，请到其他浏览器打开本站。\nUS:WeChat browser can not download the file, please go to other browsers to open this site\nJP:WeChatのブラウザはファイルをダウンロードすることができません。")
+        } else if (/Safari/i.test(navigator.userAgent)) {
+            browserName = "Safari浏览器";
+        } else {
+            browserName = "Mobile Browser";
+        }
+    } else {
+        browserName = "Unknown";
+    }
+}
+
+// 显示检测结果
+//document.write("您正在使用的浏览器是：" + browserName);
+
+
+</script>
+
+</body>
+</html>

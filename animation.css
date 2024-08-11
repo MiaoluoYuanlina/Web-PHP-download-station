@@ -1,0 +1,18 @@
+body {
+    margin: 0;
+    overflow: hidden;
+}
+
+.container {
+    width: 100%;
+    position: relative;
+    margin: 50px auto;
+}
+
+.star {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    pointer-events: none; /* 防止星星干扰点击事件 */
+}
